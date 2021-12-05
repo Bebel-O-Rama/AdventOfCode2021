@@ -8,7 +8,25 @@ def parse_data(file_name):
 
 
 def part_a(input_data):
-    return 0
+    mean_tracker = [0] * 12
+    gamma_rate = 0
+    epsilon_rate = 0
+
+    for value in input_data:
+        for i in range(12):
+            if int(value[i]):
+                mean_tracker[i] += 1
+            else:
+                mean_tracker[i] -= 1
+
+    for i in range(12):
+        if int(mean_tracker[i]) > 0:
+            gamma_rate += pow(2, 11-i)
+        else:
+            epsilon_rate += pow(2, 11 - i)
+
+    return gamma_rate * epsilon_rate
+
 
 def part_b(input_data):
     return 0
